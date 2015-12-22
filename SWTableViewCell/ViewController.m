@@ -141,7 +141,6 @@
             cell.rightUtilityButtons = [self rightButtons];
             cell.delegate = self;
         }
-        
         NSDate *dateObject = _testArray[indexPath.section][indexPath.row];
         cell.textLabel.text = [dateObject description];
         cell.textLabel.backgroundColor = [UIColor whiteColor];
@@ -176,25 +175,23 @@
     [leftUtilityButtons sw_addUtilityButtonWithColor:
      [UIColor colorWithRed:1.0f green:1.0f blue:0.35f alpha:1.0]
                                                 icon:[UIImage imageNamed:@"clock.png"]];
-    [leftUtilityButtons sw_addUtilityButtonWithColor:
-     [UIColor colorWithRed:1.0f green:0.231f blue:0.188f alpha:1.0]
-                                                icon:[UIImage imageNamed:@"cross.png"]];
-    [leftUtilityButtons sw_addUtilityButtonWithColor:
-     [UIColor colorWithRed:0.55f green:0.27f blue:0.07f alpha:1.0]
-                                                icon:[UIImage imageNamed:@"list.png"]];
-    
+
+    [leftUtilityButtons sw_addUtilityButtonWithBlock:^UIButton *{
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.backgroundColor = [UIColor colorWithRed:1.0f green:0.231f blue:0.188f alpha:1.0];
+        [btn setImage:[UIImage imageNamed:@"cross.png"] forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:@"list.png"] forState:UIControlStateHighlighted];
+        return btn;
+    }];
+    [leftUtilityButtons sw_addUtilityButtonWithBlock:^UIButton *{
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.backgroundColor = [UIColor colorWithRed:0.55f green:0.27f blue:0.07f alpha:1.0];
+        [btn setImage:[UIImage imageNamed:@"list.png"] forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:@"cross.png"] forState:UIControlStateHighlighted];
+        return btn;
+    }];
     return leftUtilityButtons;
 }
-
-// Set row height on an individual basis
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return [self rowHeightForIndexPath:indexPath];
-//}
-//
-//- (CGFloat)rowHeightForIndexPath:(NSIndexPath *)indexPath {
-//    return ([indexPath row] * 10) + 60;
-//}
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     // Set background color of cell here if you don't want default white
@@ -219,7 +216,7 @@
     }
 }
 
-- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerLeftUtilityButtonWithIndex:(NSInteger)index
+- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerLeftUtilityButtonWithIndex:(NSInteger)index withButton:(UIButton *)btn withIndexPath:(NSIndexPath *)indexPath
 {
     switch (index) {
         case 0:
@@ -238,7 +235,7 @@
     }
 }
 
-- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
+- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index withButton:(UIButton *)btn withIndexPath:(NSIndexPath *)indexPath
 {
     switch (index) {
         case 0:

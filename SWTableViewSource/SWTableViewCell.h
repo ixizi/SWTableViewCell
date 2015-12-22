@@ -25,8 +25,8 @@ typedef NS_ENUM(NSInteger, SWCellState)
 @protocol SWTableViewCellDelegate <NSObject>
 
 @optional
-- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerLeftUtilityButtonWithIndex:(NSInteger)index withButton:(UIButton *)btn;
-- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index withButton:(UIButton *)btn;
+- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerLeftUtilityButtonWithIndex:(NSInteger)index withButton:(UIButton *)btn withIndexPath:(NSIndexPath *)indexPath;
+- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index withButton:(UIButton *)btn withIndexPath:(NSIndexPath *)indexPath;
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell scrollingToState:(SWCellState)state;
 - (BOOL)swipeableTableViewCellShouldHideUtilityButtonsOnSwipe:(SWTableViewCell *)cell;
 - (BOOL)swipeableTableViewCell:(SWTableViewCell *)cell canSwipeToState:(SWCellState)state;
@@ -38,6 +38,7 @@ typedef NS_ENUM(NSInteger, SWCellState)
 
 @property (nonatomic, copy) NSArray *leftUtilityButtons;
 @property (nonatomic, copy) NSArray *rightUtilityButtons;
+@property (strong, nonatomic) NSIndexPath *indexpath;
 
 @property (nonatomic, weak) id <SWTableViewCellDelegate> delegate;
 

@@ -19,6 +19,10 @@
     [button.titleLabel setAdjustsFontSizeToFitWidth:YES];
     [self addObject:button];
 }
+- (void)sw_addUtilityButtonWithBlock:(button)block{
+    UIButton *btn = block();
+    [self addObject:btn];
+}
 - (void)sw_addUtilityButtonWithColor:(UIColor *)color title:(NSString *)title selectedTitle:(NSString *)selectedTitle
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
