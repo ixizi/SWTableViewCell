@@ -1,4 +1,5 @@
 SWTableViewCell
+`这个是我自己修改过的,增加了一些实用的方法,可以通过block添加侧滑出来的button,更加灵活.(关键是给自己用的....`
 ===============
 
 [![Build Status](https://travis-ci.org/addoshi/SWTableViewCell.svg?branch=master)](https://travis-ci.org/addoshi/SWTableViewCell)
